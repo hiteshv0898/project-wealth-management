@@ -1,0 +1,17 @@
+numpy
+pandas
+yfinance
+scikit-learn
+requests
+matplotlib
+seaborn
+beautifulsoup4
+tensorflow
+schedule
+textblob
+python-dotenv
+aiosmtpd
+streamlit
+plotly
+watchdog
+optuna
