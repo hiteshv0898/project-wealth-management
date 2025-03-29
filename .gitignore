@@ -1,60 +1,17 @@
-# Python cache files
+# Python Bytecode
 __pycache__/
 *.pyc
 *.pyo
-*.pyd
-*.db
 
-# Environment files
+# Virtual Environment
 venv/
 .env
 *.env
 
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints/
+# Logs
+logs/*.log
 
-# Log files
-logs/
-*.log
-
-# Data files
-data/*.csv
-data/*.json
-data/*.xlsx
-data/*.parquet
-
-# Model files
-*.h5
-*.model
-*.pth
-*.pkl
-*.joblib
-
-# Visualization files
-*.png
-*.jpg
-*.jpeg
-*.svg
-
-# IDE settings
-.vscode/
-.idea/
-*.iml
-
-# Python dependencies
-*.egg-info/
-*.dist-info/
-pip-wheel-metadata/
-
-# Debugging files
-*.bak
-*.swp
-*.swo
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Optuna trial data (if applicable)
-*.db-journal
-study.db
+# Data and Models
+data/
+models/
+reports/
