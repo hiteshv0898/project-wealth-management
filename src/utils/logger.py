@@ -1,17 +1,37 @@
 import logging
-import os
 
-log_file = 'logs/error.log'
-os.makedirs('logs', exist_ok=True)
+class SymbolFormatter(logging.Formatter):
+    SYMBOLS = {
+        logging.INFO: "ℹ️",
+        logging.WARNING: "⚠️",
+        logging.ERROR: "❗",
+        logging.DEBUG: "🐞",
+        logging.CRITICAL: "💥"
+    }
 
-logging.basicConfig(
-    filename=log_file,
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
+    def format(self, record):
+        symbol = self.SYMBOLS.get(record.levelno, "❓")
+        record.symbol = symbol
+        return f"{record.symbol} {super().format(record)}"
 
-def log_info(message):
-    logging.info(message)
+def setup_logger(name):
+    logger = logging.getLogger(name)
+    logger.setLevel(logging.DEBUG)
 
-def log_error(message):
-    logging.error(message)
+    # Console Handler
+    ch = logging.StreamHandler()
+    ch.setLevel(logging.INFO)
+
+    # File Handler
+    fh = logging.FileHandler('logs/error.log')
+    fh.setLevel(logging.ERROR)
+
+    # Formatter with Symbols
+    formatter = SymbolFormatter('%(asctime)s - %(symbol)1s %(levelname)s - %(message)s')
+    ch.setFormatter(formatter)
+    fh.setFormatter(formatter)
+
+    logger.addHandler(ch)
+    logger.addHandler(fh)
+
+    return logger
